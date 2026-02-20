@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enter the Realm</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================= PAGE 1 ================= -->
+  <section id="page1" class="page active">
+
+    <!-- Sakura petals -->
+    <div id="sakura-container"></div>
+
+    <div class="overlay">
+      <div class="scene-container">
+
+        <!-- Upper-left: Tanjiro + Dialogue -->
+        <div class="top-left-ui">
+          <div class="character-dialogue">
+
+            <img
+              id="tanjiroImage"
+              src="images/tanjiro/tanjiro-question.png"
+              alt="Tanjiro"
+            />
+
+            <div class="dialogue-box">
+              <p id="tanjiroText"></p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Bottom-right: Buttons -->
+        <div class="bottom-right-ui">
+          <div class="buttons" id="buttonGroup">
+            <button onclick="handleYes()">Yes, I Am Ready</button>
+            <button onclick="handleNo()">No, Sorry</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= PAGE 2 ================= -->
+  <section id="page2" class="page hidden">
+
+    <!-- Background -->
+    <div class="page2-bg"></div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <img
+       id="tanjiroAvatar"
+       src="images/tanjiro/tanjiro-neutral.png"
+       class="tanjiro-avatar"
+       alt="Tanjiro"
+      />
+
+      <p id="page2Dialogue" class="dialogue"></p>
+
+      <input
+        type="text"
+        id="nameInput"
+        placeholder="Enter Name"
+      />
+
+      <input
+        type="date"
+        id="dateInput"
+      />
+
+      <button id="verifyBtn">
+        Verify My Identity
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ================= PAGE 3 ================= -->
+  <section id="page3" class="page">
+
+    <div class="page3-container">
+
+      <img
+        src="images/tanjiro/tanjiro-goodbye.png"
+        alt="Tanjiro"
+        class="page3-tanjiro"
+      />
+
+    <div class="page3-dialogue">
+      <p id="page3Text"></p>
+    </div>
+
+    <button class="page3-btn" onclick="goToPage4()">
+      Move Forward
+    </button>
+
+  </div>
+
+</section>
+
+<!-- ================= PAGE 4 ================= -->
+<section id="page4" class="page page4-bg">
+
+  <div class="page4-overlay">
+
+    <!-- Flamingo on the left -->
+    <img
+      src="images/flamingo/flamingo-princess.png"
+      alt="Pink Flamingo Princess"
+      class="page4-flamingo"
+    />
+
+    <!-- Right-side content -->
+    <div class="page4-content">
+      <div class="page4-dialogue">
+        <p id="page4Text"></p>
+      </div>
+
+      <button class="page4-btn" onclick="goToPage5()">
+        It's Time to Sparkle!!
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= PAGE 5 ================= -->
+<section id="page5" class="page page5-bg">
+
+  <div class="page5-overlay">
+
+    <!-- Flamingo guide + message -->
+    <div class="page5-header-wrapper">
+
+      <!-- Flamingo character (Page 1 Tanjiro style) -->
+      <img
+        src="images/flamingo/flamingo-character.png"
+        class="page5-flamingo-avatar"
+        alt="Flamingo Guide"
+      />
+
+      <!-- Flamingo message -->
+      <div class="page5-header">
+        <p id="page5Text">
+          Complete Level 1 to Unlock Next Levels
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Level Menu -->
+    <div class="level-menu">
+
+      <div class="level-card active" onclick="startLevel(1)">
+        <h3>Level 1</h3>
+        <p>🎂 Birthday Cake</p>
+      </div>
+
+      <div id="level2-card" class="level-card locked">
+        <h3>Level 2</h3>
+        <p>🥳 Party</p>
+      </div>
+
+      <div id="level3-card" class="level-card locked">
+        <h3>Level 3</h3>
+        <p>🎀 Birthday Gift</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= LEVEL 1 ================= -->
+<section id="level1" class="page">
+
+  <section id="l1-invite" class="page4-bg">
+
+    <!-- Sparkle Layer -->
+    <div id="sparkle-container"></div>
+
+    <div class="page4-overlay">
+
+      <!-- Flamingo on the left -->
+      <img
+        src="images/flamingo/flamingo-princess.png"
+        alt="Pink Flamingo Princess"
+        class="page4-flamingo"
+      />
+
+      <!-- Right-side content -->
+      <div class="page4-content">
+        <div class="page4-dialogue">
+          <p id="l1InviteText"></p>
+        </div>
+
+        <div class="l1-button-group">
+          <button class="page4-btn show l1-yes-btn" onclick="l1Yes()">
+            Yesss
+          </button>
+
+          <button class="page4-btn show l1-no-btn" onclick="l1No()">
+            No, not yet
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ================= LEVEL 1 – WHITE PLEAD SCREEN ================= -->
+  <section id="l1-plead" class="page-white hidden">
+
+    <div class="page4-overlay">
+
+      <!-- Your Photo Centered -->
+      <img
+        src="images/you/you-avatar.png"
+        alt="You"
+        class="l1-you-avatar"
+      />
+
+      <div class="page4-content">
+        <div class="page4-dialogue">
+          <p id="l1PleadText"></p>
+        </div>
+
+        <button class="page4-btn show l1-plead-btn" onclick="goToWishPhase()">
+          Let's Goooo 😘
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- ================= LEVEL 1 – PHASE 2 (WISH) ================= -->
+  <section id="l1-wish" class="hidden">
+
+    <div class="l1-wish-container">
+
+      <div id="l1-wish-title" class="l1-wish-text">
+        <h2>Make a Wish ✨</h2>
+      </div>
+
+
+      <div id="l1-timer" class="l1-timer">
+        45
+      </div>
+
+      <button id="l1-wish-next" class="l1-wish-btn hidden">
+        Get Ready, Babyyy 😁
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================= LEVEL 1 – CAKE PHASE ================= -->
+  <section id="l1-cake" class="hidden">
+
+    <!-- Sparkle Layer -->
+    <div id="cake-sparkle-container"></div>
+
+    <!-- Background Overlay -->
+    <div class="cake-overlay">
+
+      <!-- Your Avatar + Dialog (Intro Before Mic) -->
+      <div id="cake-intro" class="cake-intro">
+
+        <img
+          src="images/you/you-avatar.png"
+          alt="You"
+          class="cake-you-avatar"
+        />
+
+        <div class="cake-dialog">
+          <p>Click the Candles to Make Your Wish Come True 🤗🤗</p>
+        </div>
+      </div>
+
+      <button id="cake-start-btn" class="cake-gold-btn">
+        OKAYYY
+      </button>
+
+      <!-- Cake -->
+      <div class="cake-container">
+        <img
+          src="images/cake/cake-23.png"
+          alt="Birthday Cake"
+          class="birthday-cake"
+        />
+        <div class="flame flame-2"></div>
+        <div class="flame flame-3"></div>
+      </div>
+      
+      <!-- Unlock Button -->
+      <div id="level2-unlock" class="cake-unlock-container hidden">
+        <div class="unlock-box">
+          <img src="images/flamingo/flamingo-character.png" class="flamingo-avatar">
+          <button id="level2-btn" class="pink-btn">
+            Proceed to Unlock Level 2 ✨
+          </button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+</section>
+
+<!-- ================= LEVEL 2 ================= -->
+<section id="level2" class="page">
+
+  <video id="partyVideo" autoplay loop>
+    <source src="videos/oiia-birthday-serenade.mp4" type="video/mp4">
+  </video>
+
+  <button id="proceedLevel3Btn" class="purple-btn" style="display:none;">
+    Proceed to Level 3 ✨
+  </button>
+
+</section>
+
+<!-- ================= LEVEL 3 ================= -->
+<section id="level3" class="page level3-bg">
+
+  <button id="backHomeBtn" class="blue-btn">
+    Back to Home?
+  </button>
+
+</section>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>

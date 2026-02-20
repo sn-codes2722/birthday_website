@@ -1,0 +1,1204 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ================= PAGE BASE ================= */
+
+.page {
+  position: absolute;   /* 🔒 prevents shifting */
+  inset: 0;
+
+  display: none;
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("images/backgrounds/interaction-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.page.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  position: relative; /* allows absolute positioning */
+}
+
+/* ================= SCENE CONTAINER ================= */
+
+.scene-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2; /* above sakura */
+}
+
+/* ================= TOP LEFT UI ================= */
+
+.top-left-ui {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
+
+.character-dialogue {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ================= TANJIRO ================= */
+
+#tanjiroImage {
+  width: 120px;                /* SMALLER */
+  max-height: 160px;
+  object-fit: contain;
+  border-radius: 18px;         /* rounded edges */
+  background: rgba(255,255,255,0.9);
+  padding: 8px;
+  filter: drop-shadow(0 5px 12px rgba(0,0,0,0.25));
+}
+
+/* ================= DIALOGUE ================= */
+
+.dialogue-box {
+  background: rgba(255,255,255,0.95);
+  padding: 16px 26px;
+  border-radius: 18px;
+  max-width: 380px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+/* Speech bubble pointer */
+.dialogue-box::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 12px solid rgba(255,255,255,0.95);
+}
+
+/* ================= BOTTOM RIGHT BUTTONS ================= */
+
+.bottom-right-ui {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+}
+
+.buttons {
+  display: flex;
+  gap: 18px;
+}
+
+/* ================= BUTTON STYLE ================= */
+
+button {
+  padding: 12px 26px;
+  font-size: 15px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #e63946;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background: #ff4d5a;
+  box-shadow: 0 0 15px rgba(255, 77, 90, 0.7),
+              0 0 30px rgba(255, 77, 90, 0.4);
+}
+
+/* ================= SAKURA PETALS ================= */
+
+#sakura-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sakura {
+  position: absolute;
+  top: -50px;
+  opacity: 0.85;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* ================= PAGE 2 BASE ================= */
+
+#page2 {
+  position: relative;
+  background: none; /* override page1 bg */
+}
+
+/* Page 2 background */
+.page2-bg {
+  position: absolute;
+  inset: 0;
+  background: url("images/backgrounds/infinity-castle-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Dark overlay for mood */
+.page2-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
+/* ================= TANJIRO AVATAR (PAGE 2) ================= */
+
+.tanjiro-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 0 auto 18px auto;
+
+  object-fit: cover;
+  display: block;
+
+  background: rgba(255,255,255,0.9);
+  padding: 6px;
+
+  box-shadow:
+    0 0 12px rgba(0,0,0,0.4),
+    0 0 18px rgba(127,255,212,0.3);
+
+  transition: transform 0.3s ease;
+}
+
+/* ================= LOGIN CARD (GLASS) ================= */
+
+.login-card {
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 360px;
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 0 30px rgba(0,0,0,0.45),
+    inset 0 0 20px rgba(255,255,255,0.05);
+
+  color: white;
+  z-index: 3;
+  text-align: center;
+}
+
+/* ================= PAGE 2 DIALOGUE ================= */
+
+#page2Dialogue {
+  min-height: 60px;
+  margin-bottom: 22px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ================= PAGE 2 INPUTS ================= */
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.35);
+
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.login-card input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Glow on hover / focus */
+.login-card input:hover,
+.login-card input:focus {
+  border-color: #7fffd4;
+  box-shadow:
+    0 0 10px rgba(127, 255, 212, 0.7),
+    0 0 20px rgba(127, 255, 212, 0.35);
+}
+
+/* ================= PAGE 2 BUTTON ================= */
+
+/* reuse base button styles but refine look */
+#verifyBtn {
+  width: 100%;
+  margin-top: 10px;
+
+  background: rgba(127, 255, 212, 0.2);
+  border: 1px solid #7fffd4;
+}
+
+#verifyBtn:hover {
+  background: rgba(127, 255, 212, 0.35);
+  box-shadow:
+    0 0 15px rgba(127, 255, 212, 0.7),
+    0 0 30px rgba(127, 255, 212, 0.4);
+}
+
+/* ================= PAGE FADE TRANSITIONS ================= */
+
+.page {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.page.active {
+  display: block;
+  opacity: 1;
+}
+
+.page.fade-out {
+  opacity: 0;
+}
+
+/* ================= FIRE EMBERS ================= */
+
+.ember {
+  position: fixed;
+  bottom: -20px;
+  pointer-events: none;
+  z-index: 1;
+
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255,200,120,1) 0%,
+    rgba(255,140,0,0.8) 40%,
+    rgba(255,140,0,0) 70%
+  );
+
+  animation: ember-float linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes ember-float {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(-120vh) scale(0.4);
+    opacity: 0;
+  }
+}
+
+
+/* ================= PAGE 3 ================= */
+
+#page3 {
+  background: white;
+}
+
+.page3-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+/* Tanjiro image */
+.page3-tanjiro {
+  width: 200px;
+  max-width: 70%;
+  margin-bottom: 26px;
+}
+
+/* Dialogue box */
+.page3-dialogue {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 24px 32px;
+  border-radius: 18px;
+  max-width: 520px;
+
+  font-size: 17px;
+  line-height: 1.6;
+  color: #222;
+
+  margin-bottom: 30px;
+}
+
+/* Button */
+.page3-btn {
+  padding: 12px 36px;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  background: #ff007f; /* Barbie Pink */
+  color: white;
+  border: none;
+
+  display: none;
+  position: relative;
+  overflow: hidden;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.page3-btn.show {
+  display: inline-block;
+}
+
+/* ✨ Hover effect: stay pink + glow */
+.page3-btn:hover {
+  background: #ff007f; /* STAYS pink */
+  transform: scale(1.08);
+
+  box-shadow:
+    0 0 18px rgba(255, 79, 163, 0.8),
+    0 0 36px rgba(255, 79, 163, 0.55),
+    0 0 60px rgba(255, 255, 255, 0.35); /* silver sparkle glow */
+
+  color: white;
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+/* ✨ Silver sparkles layer */
+.page3-btn {
+  padding: 12px 36px;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  background: #ff007f; /* Barbie Pink */
+  color: white;
+  border: none;
+
+  display: none;
+  position: relative;
+  overflow: hidden;
+
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.page3-btn.show {
+  display: inline-block;
+}
+
+/* 🌸 HOVER: soft sparkly pink texture */
+.page3-btn:hover {
+  background-image: url("images/effects/pink-sparkle.jpg");
+  background-size: cover;
+  background-position: center;
+
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 18px rgba(255, 79, 163, 0.8),
+    0 0 36px rgba(255, 79, 163, 0.45);
+}
+
+/* ✨ Sparkle animation */
+@keyframes sparkle-move {
+  from {
+    transform: translateX(-20%) translateY(-20%);
+  }
+  to {
+    transform: translateX(20%) translateY(20%);
+  }
+}
+
+/* ================= PAGE 4 ================= */
+
+.page4-bg {
+  background-image: url("images/backgrounds/flamingo-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Soft white overlay for readability */
+.page4-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 8%;
+}
+
+/* Flamingo on the left */
+.page4-flamingo {
+  width: 320px;
+  aspect-ratio: 9 / 16;   /* 🔑 portrait ratio */
+
+  object-fit: cover;
+  object-position: center top;
+
+  border-radius: 22px;
+}
+
+/* Right-side content */
+.page4-content {
+  max-width: 560px;
+  text-align: left;
+
+  margin-right: 6%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* ⬅ moves button to right */
+}
+
+/* Dialogue box */
+.page4-dialogue {
+  background: rgba(255, 230, 240, 0.9);
+  padding: 28px 40px;     /* ⬆ more breathing space */
+  border-radius: 24px;
+
+  max-width: 560px;       /* ⬆ longer box */
+
+  font-size: 17px;
+  line-height: 1.7;
+  color: #d63384;
+
+  margin-bottom: 26px;
+}
+
+/* Button */
+.page4-btn {
+  padding: 14px 38px;
+  font-size: 16px;
+  border-radius: 32px;
+  cursor: pointer;
+  margin-top: 12px; /* ⬅ slightly lower than dialog */
+
+  background: #ff007f;
+  color: white;
+  border: none;
+
+  display: none;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.page4-btn.show {
+  display: inline-block;
+}
+
+/* Sparkly hover (same as Page 3) */
+.page4-btn:hover {
+  background-image: url("images/effects/pink-sparkle.jpg");
+  background-size: cover;
+  background-position: center;
+
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 18px rgba(255, 79, 163, 0.8),
+    0 0 36px rgba(255, 79, 163, 0.45);
+}
+
+/* ========================================================= */
+/* ====================== PAGE 5 =========================== */
+/* ========================================================= */
+
+.page5-bg {
+  background-image: url("images/backgrounds/birthday-menu-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.page5-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flamingo + Dialogue */
+.page5-header-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 70px;
+}
+
+/* Flamingo Avatar */
+.page5-flamingo-avatar {
+  width: 200px;
+  border-radius: 28px;
+  padding: 12px;
+  background: white;
+
+  box-shadow:
+    0 12px 32px rgba(255, 105, 180, 0.35),
+    0 0 22px rgba(255, 182, 193, 0.45);
+}
+
+/* Dialogue */
+.page5-header {
+  background: rgba(255, 230, 240, 0.95);
+  padding: 28px 46px;
+  border-radius: 28px;
+
+  font-size: 20px;
+  line-height: 1.6;
+  color: #d63384;
+
+  position: relative;
+  max-width: 520px;
+}
+
+/* Speech Arrow */
+.page5-header::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-right: 18px solid rgba(255, 230, 240, 0.95);
+}
+
+/* Level Menu */
+.level-menu {
+  display: flex;
+  gap: 60px;
+}
+
+/* Level Cards */
+.level-card {
+  width: 280px;
+  height: 210px;
+
+  border-radius: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+}
+
+.level-card h3 {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.level-card p {
+  font-size: 19px;
+}
+
+/* Active */
+.level-card.active {
+  background: #ff007f;
+  color: white;
+
+  box-shadow:
+    0 0 24px rgba(255, 79, 163, 0.9),
+    0 0 48px rgba(255, 79, 163, 0.5);
+}
+
+.level-card.active:hover {
+  transform: scale(1.12);
+}
+
+/* Locked */
+.level-card.locked {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+/* LEVEL 1 PHASE 1 */
+
+#phase1 {
+  position: relative;
+  height: 100vh;
+  background: url("images/backgrounds/flamingo-bg.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Gold Hover for Yesss */
+.gold-hover:hover {
+  background: url("images/effects/gold-shimmer.jpg") center/cover;
+  color: white;
+}
+
+#sparkle-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  animation: twinkle 1.5s infinite;
+  filter: drop-shadow(0 0 4px gold);
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ================= LEVEL 1 HOVER FIX ================= */
+
+/* Remove pink hover from Level 1 buttons */
+#level1 .page4-btn:hover {
+  background-image: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Add GOLD shimmer only for Yesss */
+#level1 .l1-yes-btn:hover {
+  background-image: url("images/effects/gold-shimmer.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+  transform: scale(1.06);
+}
+
+/* Ensure No button has zero hover effect */
+#level1 .l1-no-btn:hover {
+  background-image: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* White background */
+.page-white {
+  background: #f5e0e7;
+}
+
+/* Hide helper */
+.hidden {
+  display: none;
+}
+
+/* Center your avatar like Tanjiro page */
+.l1-you-avatar {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  height: 420px;
+}
+
+/* Remove pink hover from this button */
+#level1 .l1-plead-btn:hover {
+  background-image: url("images/effects/gold-shimmer.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+  transform: scale(1.06);
+}
+
+/* ================= LEVEL 1 INTERNAL PHASE LAYERING ================= */
+
+#level1 {
+  position: relative;
+  overflow: hidden;
+}
+
+#level1 > section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#level1 .hidden {
+  display: none;
+}
+
+/* ================= LEVEL 1 WHITE SCREEN LAYOUT ================= */
+
+#l1-plead .page4-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3%;
+}
+
+/* Move avatar slightly left and increase size */
+#l1-plead .l1-you-avatar {
+  position: relative;   /* remove absolute */
+  left: 0;
+  top: 0;
+  transform: none;
+  height: 380px;        /* increase size */
+}
+
+/* Move dialogue block to right */
+#l1-plead .page4-content {
+  text-align: right;
+}
+
+/* ================= LEVEL 1 PHASE 2 ================= */
+
+#l1-wish {
+  background: url("images/backgrounds/royal-blue-wish.jpg") no-repeat;
+  background-size: cover;
+  background-position: center 40%;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.l1-wish-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.l1-wish-text h2 {
+  color: gold;
+  font-size: 38px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.l1-timer {
+  font-size: 70px;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 40px;
+}
+
+.l1-wish-btn {
+  background: url("images/effects/gold-shimmer.jpg") center/cover;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
+  cursor: pointer;
+}
+
+.l1-wish-btn:hover {
+  background: linear-gradient(45deg, #ffcc00, #ffaa00);
+  transform: scale(1.05);
+}
+
+/* ================= CAKE PHASE ================= */
+
+#l1-cake {
+  position: relative;
+  height: 100vh;
+  background: url("images/backgrounds/cake-bg-dark.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* Sparkle Layer */
+#cake-sparkle-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cake positioning */
+.cake-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100vh;
+  z-index: 1;
+}
+
+.birthday-cake {
+  width: 520px; /* adjust if needed */
+  position: relative;
+  z-index: 1;
+}
+
+/* Intro Layout */
+.cake-intro {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cake-you-avatar {
+  width: 130px;          /* bigger */
+  height: 130px;
+  object-fit: cover;
+
+  border-radius: 20px;   /* soft square like page 1 */
+  border: 4px solid white;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.cake-dialog {
+  position: relative;
+  background: rgb(250, 227, 227);
+  padding: 18px 25px;
+  border-radius: 20px;
+  max-width: 350px;
+
+  font-size: 16px;
+  color: #ff6464;
+}
+
+.cake-dialog::before {
+  content: "";
+  position: absolute;
+
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 12px solid white;
+}
+
+/* Golden Button */
+.cake-gold-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+
+  padding: 14px 35px;
+  border: none;
+  border-radius: 30px;
+
+  background: url("images/effects/gold-shimmer.jpg") center/cover;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 5;
+  cursor: pointer;
+}
+
+/*candle placement*/
+/* Base flame */
+.flame {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  background: radial-gradient(circle at center,
+    #fff9c4 0%,
+    #ffeb3b 40%,
+    #ff9800 70%,
+    transparent 100%);
+  border-radius: 50%;
+  animation: flicker 0.15s infinite alternate;
+  z-index: 5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+
+/* Position above candle 2 */
+.flame-2 {
+  bottom: 68%;   /* Adjust carefully */
+  left: 49%;
+}
+
+/* Position above candle 3 */
+.flame-3 {
+  bottom: 68%;   /* Same height */
+  left: 51.3%;
+}
+
+@keyframes flicker {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+.flame.out {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: none;
+  pointer-events: none;  /* prevent re-click */
+}
+
+.burst-sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: gold;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: burst 0.8s ease-out forwards;
+  z-index: 9999; /* VERY important */
+}
+
+@keyframes burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(-50px + 100px * var(--randX)),
+      calc(-50px + 100px * var(--randY))
+    ) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.cake-unlock-container {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  z-index: 600;
+}
+
+.cake-unlock-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 80px;
+
+  padding: 14px 35px;
+  border-radius: 30px;
+  border: none;
+
+  background: #ff4fa3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cake-unlock-btn:hover {
+  background: url("images/effects/pink-sparkle.jpg") center/cover;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 79, 163, 0.7);
+}
+
+.unlock-box {
+  position: absolute;
+  bottom: 60px;
+  right: 80px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  z-index: 100;
+}
+
+.flamingo-avatar {
+  width: 85px;
+  height: 85px;
+  border: 3px solid white;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.pink-btn {
+  padding: 16px 40px;
+  border-radius: 30px;
+  border: none;
+
+  background: #ff4fa3;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  white-space: nowrap;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pink-btn:hover {
+  background: linear-gradient(45deg, #ff4fa3, #ff82c3);
+  box-shadow: 0 0 20px rgba(255, 79, 163, 0.8);
+  transform: scale(1.05);
+}
+
+.hidden {
+  display: none;
+}
+
+#level2 {
+  position: relative;
+  overflow: hidden;
+  background: black;
+}
+
+#partyVideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.purple-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #5e17eb, #9d4edd);
+  color: white;
+  box-shadow: 0 0 20px rgba(157, 78, 221, 0.6);
+  transition: 0.3s ease;
+}
+
+.purple-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(157, 78, 221, 0.9);
+}
+
+.level3-bg {
+  background: url("images/backgrounds/love.png") no-repeat center center;
+  background-size: contain;   /* THIS is the key change */
+  background-color: black;    /* fills empty space nicely */
+  height: 100vh;
+  width: 100%;
+}
+
+.blue-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding: 16px 32px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(45deg, #89CFF0, #A7D8FF);
+  color: white;
+
+  box-shadow: 0 0 20px rgba(137, 207, 240, 0.6);
+
+  opacity: 0;
+  transition: opacity 1s ease, transform 0.4s ease, box-shadow 0.4s ease;
+
+  z-index: 10;
+}
+
+.blue-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(137, 207, 240, 0.9);
+}
