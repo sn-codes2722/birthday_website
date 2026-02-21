@@ -404,7 +404,7 @@ function startWishTimer() {
       nextBtn.classList.remove("hidden");
     }
 
-  }, 500);
+  }, 1350);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
